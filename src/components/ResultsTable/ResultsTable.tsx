@@ -21,7 +21,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
   return (
     <table className="table-fixed my-6 w-full">
       <thead>
-        <tr className="text-light-dark text-left text-sm py-4 border-b-2 border-b-light-dark">
+        <tr className="text-cw-gray text-left text-sm py-4 border-b-2 border-b-light-dark">
           <th className="w-1/6 py-4 font-medium">Rank</th>
           <th className="w-2/3 py-4 font-medium">Name</th>
           <th className="w-1/6 py-4 font-medium">Honor</th>

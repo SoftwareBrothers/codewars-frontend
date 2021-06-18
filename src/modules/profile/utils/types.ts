@@ -11,7 +11,12 @@ export interface BrandResponse extends Board {
 }
 
 export interface User {
-
+  id: number;
+  username: string;
+  firstName: Nullable<string>;
+  lastName: Nullable<string>;
+  createdAt: Nullable<Date>;
+  updatedAt: Nullable<Date>;
 }
 
 
@@ -20,4 +25,13 @@ export interface Challenge {
   rank: Nullable<string>;
   finishedDate: Nullable<Date>;
   language: Nullable<string>;
+}
+
+export interface Rank {
+  name: Nullable<string>;
+  language: Nullable<string>;
+}
+
+export interface UserRank extends Rank {
+  score: Nullable<number>;
 }

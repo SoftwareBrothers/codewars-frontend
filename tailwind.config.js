@@ -14,23 +14,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        'purple-heart': '#531AC6',
-        'blue-marguerite': '#8175CB',
-        'violent-violet': '#170F58',
-        'daisy-bush': '#4a17b2',
-        prelude: '#D1CDE9',
-        'white-lilac': '#F3F1F9',
-        'dove-gray': '#717171',
-        purple: '#5300c6',
-        cinnabar: '#E8494C',
-        mischka: '#d7d6da',
-        gamboge: '#e2990a',
-        emerald: '#009e5f',
-        violet: '#0B0727',
-        snuff: '#e8e4f3',
-        light: '#f3f1f9',
         dark: '#171717',
         'light-dark': '#1e1e1e',
+        'dark-orange': '#b1361e',
+        'cw-red': '#1e1e1e',
+        'cw-gray': '#818181'
       },
       width: {
         auth: '592px',
@@ -64,11 +52,13 @@ module.exports = {
         DEFAULT: {
           css: {
             fontSize: '1rem',
-            fontFamily: 'CircularStd',
+            fontFamily: 'TTNorms',
+            color: 'white',
             p: {
               fontSize: '1rem',
               lineHeight: '1.75',
               fontWeight: 400,
+              color: 'white',
             },
             h3: {
               fontSize: '1.5rem',

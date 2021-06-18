@@ -7,9 +7,11 @@ import CardWrapper from '../../src/components/CardWrapper';
 import ChallengesTable from '../../src/components/ChallengesTable';
 import Head from '../../src/components/Head';
 import PageWrapper from '../../src/components/PageWrapper';
+import RanksTable from '../../src/components/RanksTable';
 import { apiPaths } from '../../src/constants/apiPath';
+import UserCard from '../../src/modules/profile/components/User';
 import userFetcher from '../../src/modules/profile/fetchers/userFetcher';
-import { Challenge, User } from '../../src/modules/profile/utils/types';
+import { Challenge, User, UserRank } from '../../src/modules/profile/utils/types';
 import fetchData from '../../src/utils/fetchData';
 import fetchInitialData from '../../src/utils/fetchInitialData';
 import { NAMESPACE } from '../../src/utils/translationNamespaces';
@@ -17,11 +19,12 @@ import {
   CommonPageProps,
 } from '../../src/utils/types';
 
-const translations = [NAMESPACE.COMMON, NAMESPACE.PROFILE];
+const translations = [NAMESPACE.COMMON];
 
 interface UserOverviewProps extends CommonPageProps {
   userInitial?: User;
   challengesInitial?: Challenge[];
+  ranksInitial?: UserRank[];
 }
 
 const UserOverviewPage: NextPage<UserOverviewProps & {
@@ -34,7 +37,20 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
     rank: "123",
     language: "javascript",
     finishedDate: new Date(),
-  }]
+  }],
+  ranksInitial= [{
+    name: "test",
+    score: 123,
+    language: "javascript"
+  },{
+    name: "test 2",
+    score: 33,
+    language: "typescript"
+  },{
+    name: "test 3",
+    score: -500,
+    language: "javascript"
+  }],
 }) => {
   const { t } = useTranslation(translations);
 
@@ -44,7 +60,7 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
       errorResponse={errorResponse}
     >
       <Head
-        title={t(`${NAMESPACE.PROFILE}:pageTitle`)}
+        title={t(`${NAMESPACE.PROFILE}.pageTitle`, {user: userInitial.username})}
       />
       <AppLayout
         >
@@ -56,17 +72,18 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
           </Link>
           <h1 className="tf-h1 text-white">Profile</h1>
         </div>
-        <div className="flex">
+        <div className="md:flex">
           <CardWrapper width="1/2" additionalClass="mb-6 md:mr-4">
-            123
+            <UserCard initialData={userInitial}>
+            </UserCard>
           </CardWrapper>
           <CardWrapper width="1/2" additionalClass="mb-6 md:ml-4">
-            Test 2
+            <RanksTable initialData={ranksInitial}>
+            </RanksTable>
           </CardWrapper>
         </div>
         <CardWrapper additionalClass="md:mt-2">
           <ChallengesTable initialData={challengesInitial}>
-
           </ChallengesTable>
         </CardWrapper>
       </AppLayout>

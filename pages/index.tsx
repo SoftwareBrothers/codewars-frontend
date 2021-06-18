@@ -52,7 +52,7 @@ const DashboardPage: NextPage<DashboardProps & {
 
   return (
     <PageWrapper errorResponse={errorResponse}>
-      <Head title={t('pageTitle')} />
+      <Head title={t('dashboard.pageTitle')} />
       <AppLayout>
         <div className="w-full py-8 md:py-12">
           <h1 className="tf-h1 text-white pb-8">Board</h1>
