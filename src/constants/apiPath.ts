@@ -6,5 +6,10 @@ export const apiPaths = {
         return `/profiles/${id}/`;
       },
     },
+  },
+  board: {
+    getDetails: {
+      path: "/board/"
+    },
   }
 };

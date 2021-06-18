@@ -3,23 +3,22 @@ import { GetServerSidePropsContext } from 'next';
 import { apiPaths } from '../../../constants/apiPath';
 import ajax from '../../../utils/ajax';
 import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
-import { Brand } from '../utils/types';
+import { Board } from '../utils/types';
 
-type BrandFetcherOptions = {
-  id: number;
+type BoardFetcherOptions = {
+  language?: string;
 };
 
-const brandFetcher = async (
-  options?: BrandFetcherOptions,
+const boardFetcher = async (
+  url: string,
   context?: GetServerSidePropsContext,
-): Promise<Brand> => {
-  const { id } = options;
-  const { data } = await ajax.get<never, AxiosResponse<Brand>>(
-    apiPaths.brands.getDetails.path(id),
+): Promise<Board[]> => {
+  const { data } = await ajax.get<never, AxiosResponse<Board[]>>(
+    url,
     getAPICallAuthConfig(context),
   );
 
   return data;
 };
 
-export default brandFetcher;
+export default boardFetcher;

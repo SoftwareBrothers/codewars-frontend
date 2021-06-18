@@ -33,3 +33,13 @@ export interface BrandResponse extends BrandBase {
   updatedAt: Nullable<string>;
   foundedYear: Nullable<number>;
 }
+
+
+export interface Board {
+  name: string;
+  rank: Nullable<string>;
+  score: Nullable<number>;
+}
+
+export interface BrandResponse extends Board {
+}

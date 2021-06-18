@@ -62,7 +62,7 @@ export const useApiCall = <TObject, TResponse = never>(
         url,
         method,
         data: body,
-        headers: getHeaders(authorize ?? false),
+        headers: getHeaders(),
       });
 
       setState({

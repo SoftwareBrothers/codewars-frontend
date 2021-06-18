@@ -8,20 +8,26 @@ import Head from '../src/components/Head';
 import PageWrapper from '../src/components/PageWrapper';
 import ResultsTable from '../src/components/ResultsTable';
 import { Tab, Tabs } from '../src/components/Tabs';
+import { apiPaths } from '../src/constants/apiPath';
+import boardFetcher from '../src/modules/profile/fetchers/boardFetcher';
+import { Board } from '../src/modules/profile/utils/types';
 import fetchData from '../src/utils/fetchData';
+import fetchInitialData from '../src/utils/fetchInitialData';
 import { NAMESPACE } from '../src/utils/translationNamespaces';
-import { CommonPageProps, FetchCollectionResponse } from '../src/utils/types';
+import { CommonPageProps } from '../src/utils/types';
 
 const translations = [NAMESPACE.COMMON];
 
 const TABS = ["General", "JavaScript", "TypeScript"];
 
 interface DashboardProps extends CommonPageProps {
-  initialResults?: FetchCollectionResponse<any>[];
+  boardInitial?: Board[];
 }
 
-const DashboardPage: NextPage<DashboardProps> = ({
+const DashboardPage: NextPage<DashboardProps & {
+}> = ({
   errorResponse,
+  boardInitial
 }) => {
   const { t } = useTranslation(translations);
   const theme = useTheme();
@@ -55,7 +61,7 @@ const DashboardPage: NextPage<DashboardProps> = ({
                 <Tab key={tab} value={tab} label={t(tab)} />
               ))}
             </Tabs>
-            <ResultsTable/>
+            <ResultsTable initialData={boardInitial}/>
           </div>
         </div>
       </AppLayout>
@@ -63,12 +69,16 @@ const DashboardPage: NextPage<DashboardProps> = ({
   );
 };
 
-export const getServerSideProps = fetchData(async (ctx) => {
 
-  const { activeTab } = ctx.query;
+export const getServerSideProps = fetchData(async (ctx) => {
+  const { query } = ctx;
 
   return {
-   
+    ...(await fetchInitialData(boardFetcher)(
+      apiPaths.board.getDetails.path,
+      'boardInitial',
+      ctx,
+    )),
   };
 });
 
