@@ -18,8 +18,7 @@
     "build-storybook": "build-storybook"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.@(ts|tsx)": [
@@ -38,6 +37,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
+    "date-fns": "^2.22.1",
     "firebase": "^8.3.1",
     "firebase-admin": "^9.5.0",
     "lodash": "^4.17.21",

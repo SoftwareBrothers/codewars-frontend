@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export const apiPaths = {
-  profile: {
+  user: {
     getDetails: {
-      path: (id:number): string => {
-        return `/profiles/${id}/`;
+      path: (userId:number): string => {
+        return `/users/${userId}`;
       },
     },
   },

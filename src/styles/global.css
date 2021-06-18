@@ -2,7 +2,7 @@
   @font-face {
     font-family: TTNorms;
     font-weight: 400;
-    src: url(/fonts/TTNorms-Normal.otf) format('opentype');
+    src: url(/fonts/TTNorms-Regular.otf) format('opentype');
   }
   @font-face {
     font-family: TTNorms;
@@ -227,20 +227,14 @@
   .border-b-light-dark {
     border-bottom: solid 1px #1e1e1e;
   }
-
-  .bg-dark {
-    background-color: #171717;
+  .rectangle {
+    width: 38px;
+    height: 38px;
+    margin: 61px 16px 37px 208px;
+    padding: 7px;
+    opacity: 0.1;
+    border-radius: 8px;
+    background-color: #818181;
   }
-
-  .bg-light-dark {
-    background-color: #1e1e1e;
-  }
-
-  .text-dark {
-    color: #171717;
-  }
-
-  .text-light-dark {
-    color: #1e1e1e;
-  }
+  
 }

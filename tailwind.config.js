@@ -29,6 +29,8 @@ module.exports = {
         violet: '#0B0727',
         snuff: '#e8e4f3',
         light: '#f3f1f9',
+        dark: '#171717',
+        'light-dark': '#1e1e1e',
       },
       width: {
         auth: '592px',

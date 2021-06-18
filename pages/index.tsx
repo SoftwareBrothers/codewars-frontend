@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, useEffect } from 'react';
 import AppLayout from '../src/components/AppLayout';
+import CardWrapper from '../src/components/CardWrapper';
 import Head from '../src/components/Head';
 import PageWrapper from '../src/components/PageWrapper';
 import ResultsTable from '../src/components/ResultsTable';
@@ -55,14 +56,14 @@ const DashboardPage: NextPage<DashboardProps & {
       <AppLayout>
         <div className="w-full py-8 md:py-12">
           <h1 className="tf-h1 text-white pb-8">Board</h1>
-          <div className="bg-dark w-full rounded-2xl p-4 md:p-10">
+          <CardWrapper>
             <Tabs value={tab} onChange={handleTabSelect} centered={isMobile}>
               {TABS.map((tab) => (
                 <Tab key={tab} value={tab} label={t(tab)} />
               ))}
             </Tabs>
             <ResultsTable initialData={boardInitial}/>
-          </div>
+          </CardWrapper>
         </div>
       </AppLayout>
     </PageWrapper>

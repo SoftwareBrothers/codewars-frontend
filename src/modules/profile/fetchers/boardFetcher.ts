@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
-import { apiPaths } from '../../../constants/apiPath';
 import ajax from '../../../utils/ajax';
 import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
 import { Board } from '../utils/types';

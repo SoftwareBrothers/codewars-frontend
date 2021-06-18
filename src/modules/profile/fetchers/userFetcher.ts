@@ -2,13 +2,13 @@ import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import ajax from '../../../utils/ajax';
 import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
-import { Brand } from '../utils/types';
+import { User } from '../utils/types';
 
-const profileFetcher = async (
+const userFetcher = async (
   url?: string,
   context?: GetServerSidePropsContext,
-): Promise<Brand> => {
-  const { data } = await ajax.get<never, AxiosResponse<Brand>>(
+): Promise<User> => {
+  const { data } = await ajax.get<never, AxiosResponse<User>>(
     url,
     getAPICallAuthConfig(context),
   );
@@ -16,4 +16,4 @@ const profileFetcher = async (
   return data;
 };
 
-export default profileFetcher;
+export default userFetcher;

@@ -17,7 +17,7 @@ const AppLayout: FC<AppLayoutProps> = ({
         </div>
         <div className="h-full w-full flex-1">
           <div
-            className="flex-1 relative z-10 container m-auto"
+            className="flex-1 relative z-10 container m-auto px-4"
           >
             {children}
           </div>
