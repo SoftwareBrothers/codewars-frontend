@@ -1,0 +1,5 @@
+{
+  "singleQuote": true,
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "trailingComma": "all"
+}

@@ -1,0 +1,10 @@
+.cache
+.git
+.gitignore
+.results
+.vscode
+.next
+scripts
+*Dockerfile*
+node_modules
+.env.local
