@@ -1,12 +1,7 @@
 import Error from 'next/error';
-import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { useSWRInfinite } from 'swr';
-import { apiPaths } from '../../constants/apiPath';
-import brandSerializer from '../../modules/profile/serializers/brandSerializer';
-import { Board, Brand } from '../../modules/profile/utils/types';
-import { fetchListData } from '../../utils/fetchListData';
-import { CommonPageProps, FetchCollectionResponse } from '../../utils/types';
+import { Board } from '../../modules/profile/utils/types';
+import { CommonPageProps } from '../../utils/types';
 
 interface ResultsTableProps extends CommonPageProps {
   initialData?: Board[];
