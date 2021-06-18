@@ -48,13 +48,13 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
       />
       <AppLayout
         >
-        <div className="w-full py-8 md:py-12">
+        <div className="w-full py-8 md:py-12 flex">
           <Link href="/">
-            <div className="rectangle">
+            <div className="rectangle mr-4">
               <img src="/images/back-arrow.svg" alt="icon"></img>  
             </div>
           </Link>
-          <h1 className="tf-h1 text-white pb-8">Profile</h1>
+          <h1 className="tf-h1 text-white">Profile</h1>
         </div>
         <div className="flex">
           <CardWrapper width="1/2" additionalClass="mb-6 md:mr-4">
