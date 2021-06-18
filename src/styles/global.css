@@ -200,11 +200,15 @@
   }
 
   .border-cw-red {
-    border-bottom: solid 1px #1e1e1e;
+    border-bottom: solid 1px #e6282b;
   }
 
   .border-b-light-dark {
     border-bottom: solid 1px #1e1e1e;
+  }
+
+  .border-cw-gray {
+    border-bottom: solid 1px #818181;
   }
 
   .rectangle {
@@ -218,5 +222,14 @@
   
   .rect-gradient {
     background-image: radial-gradient(circle at 25% 112%, rgba(230, 40, 43, 0.11), rgba(230, 40, 43, 0) 72%), linear-gradient(to bottom, #171717, #171717) !important;
+  }
+
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    background-color: #e6282b !important;
+  }
+
+  .DayPicker-Caption > div,
+  .DayPicker-Day {
+    color: white !important
   }
 }

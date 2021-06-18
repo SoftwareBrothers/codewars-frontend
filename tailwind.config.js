@@ -17,7 +17,7 @@ module.exports = {
         dark: '#171717',
         'light-dark': '#1e1e1e',
         'dark-orange': '#b1361e',
-        'cw-red': '#1e1e1e',
+        'cw-red': '#e6282b',
         'cw-gray': '#818181'
       },
       width: {
