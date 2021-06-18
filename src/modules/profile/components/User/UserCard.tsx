@@ -56,8 +56,8 @@ const UserCard: FC<UserProps> = ({
           </div>
           
         </div>
-        <div className="hidden md:w-1/4 md:block">
-
+        <div className="hidden md:w-1/4 md:block relative">
+          <img src="/images/user.svg" alt="user" className="h-full absolute -right-10 -bottom-10" />
         </div>
       </div>
     </>

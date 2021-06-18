@@ -73,7 +73,7 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
           <h1 className="tf-h1 text-white">Profile</h1>
         </div>
         <div className="md:flex">
-          <CardWrapper width="1/2" additionalClass="mb-6 md:mr-4">
+          <CardWrapper width="1/2" additionalClass="mb-6 md:mr-4 rect-gradient">
             <UserCard initialData={userInitial}>
             </UserCard>
           </CardWrapper>

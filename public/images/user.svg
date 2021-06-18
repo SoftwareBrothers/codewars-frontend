@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104" height="197" viewBox="0 0 104 197">
+    <defs>
+        <linearGradient id="3ixrpmfulc" x1="74.165%" x2="50%" y1="6.358%" y2="76.424%">
+            <stop offset="0%" stop-color="#E6282B"/>
+            <stop offset="100%" stop-color="#E6282B" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="357pxho6pd" x1="73.929%" x2="64.315%" y1="37.69%" y2="58.529%">
+            <stop offset="0%" stop-color="#E6282B"/>
+            <stop offset="100%" stop-color="#E6282B" stop-opacity="0"/>
+        </linearGradient>
+        <path id="y6sfrp6doa" d="M0 0H104V197H0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(-600.000000, -235.000000) translate(652.000000, 333.500000) scale(-1, 1) translate(-652.000000, -333.500000) translate(600.000000, 235.000000)">
+                <mask id="87pxjr8wub" fill="#fff">
+                    <use xlink:href="#y6sfrp6doa"/>
+                </mask>
+                <g mask="url(#87pxjr8wub)">
+                    <g transform="translate(-36.000000, 9.000000)">
+                        <circle cx="65.5" cy="43.5" r="43.5" fill="url(#3ixrpmfulc)" opacity=".252"/>
+                        <path fill="url(#357pxho6pd)" d="M0 176v-21.667C0 130.401 19.55 111 43.667 111h43.666C111.45 111 131 130.401 131 154.333V176" opacity=".252"/>
+                        <circle cx="65.5" cy="43.5" r="43.5" stroke="#E6282B" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path stroke="#E6282B" stroke-linecap="round" stroke-linejoin="round" d="M0 176v-21.667C0 130.401 19.55 111 43.667 111h43.666C111.45 111 131 130.401 131 154.333V176"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
