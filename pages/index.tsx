@@ -11,7 +11,7 @@ import ResultsTable from '../src/components/ResultsTable';
 import { Tab, Tabs } from '../src/components/Tabs';
 import { apiPaths } from '../src/constants/apiPath';
 import boardFetcher from '../src/modules/profile/fetchers/boardFetcher';
-import { BoardResponse } from '../src/modules/profile/utils/types';
+import { Board, BoardResponse } from '../src/modules/profile/utils/types';
 import fetchData from '../src/utils/fetchData';
 import fetchInitialData from '../src/utils/fetchInitialData';
 import { NAMESPACE } from '../src/utils/translationNamespaces';
@@ -25,19 +25,23 @@ const TABS = ["General", "JavaScript", "TypeScript"];
 
 interface DashboardProps extends CommonPageProps {
   boardInitial?: BoardResponse;
+  jsInitial?: BoardResponse;
+  tsInitial?: BoardResponse;
 }
 
 const DashboardPage: NextPage<DashboardProps & {
+  board: BoardResponse
 }> = ({
   errorResponse,
-  boardInitial
+  board: boardInitial,
+  jsInitial,
+  tsInitial
 }) => {
   const { t } = useTranslation(translations);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { push, pathname, query } = useRouter();
   const tab = query.activeTab;
-
   const [to, setTo] = useState(undefined);
   const [from, setFrom] = useState(undefined);
   const [datePickerOpened, setDatePickerOpened] = useState(false);
@@ -55,6 +59,7 @@ const DashboardPage: NextPage<DashboardProps & {
       shallow: true,
     });
   };
+
   const modifiers = { start: from, end: to };
 
   const handleDayClick = (day) => {
@@ -83,6 +88,7 @@ const DashboardPage: NextPage<DashboardProps & {
   const getNewResults = () => {
     // TO DO
   }
+  
   return (
     <PageWrapper errorResponse={errorResponse}>
       <Head title={t('dashboard.pageTitle')} />
@@ -129,7 +135,8 @@ const DashboardPage: NextPage<DashboardProps & {
                 <Tab key={tab} value={tab} label={t(tab)} />
               ))}
             </Tabs>
-            <ResultsTable initialData={boardInitial}/>
+            <ResultsTable 
+              initialData={ tab === "JavaScript" ? jsInitial : boardInitial}/>
           </CardWrapper>
         </div>
       </AppLayout>
@@ -144,7 +151,17 @@ export const getServerSideProps = fetchData(async (ctx) => {
   return {
     ...(await fetchInitialData(boardFetcher)(
       apiPaths.board.getDetails.path("GENERAL"),
-      'boardInitial',
+      'generalInitial',
+      ctx,
+    )),
+    ...(await fetchInitialData(boardFetcher)(
+      apiPaths.board.getDetails.path("javascript"),
+      'jsInitial',
+      ctx,
+    )),
+    ...(await fetchInitialData(boardFetcher)(
+      apiPaths.board.getDetails.path("typescript"),
+      'tsInitial',
       ctx,
     )),
   };

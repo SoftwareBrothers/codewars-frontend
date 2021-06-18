@@ -2,17 +2,13 @@ import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import ajax from '../../../utils/ajax';
 import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
-import { Board } from '../utils/types';
-
-type BoardFetcherOptions = {
-  language?: string;
-};
+import { BoardResponse } from '../utils/types';
 
 const boardFetcher = async (
   url: string,
   context?: GetServerSidePropsContext,
-): Promise<Board[]> => {
-  const { data } = await ajax.get<never, AxiosResponse<Board[]>>(
+): Promise<BoardResponse> => {
+  const { data } = await ajax.get<never, AxiosResponse<BoardResponse>>(
     url,
     getAPICallAuthConfig(context),
   );
