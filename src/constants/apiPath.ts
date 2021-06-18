@@ -9,7 +9,9 @@ export const apiPaths = {
   },
   board: {
     getDetails: {
-      path: "/board/"
+      path: (language:string): string => {
+        return `/board/?language=${language.toUpperCase()}`;
+      }
     },
   }
 };

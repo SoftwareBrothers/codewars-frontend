@@ -2,12 +2,15 @@ import { Nullable } from '../../../utils/types';
 
 
 export interface Board {
+  id: number;
   name: string;
+  username: string;
   rank: Nullable<string>;
   score: Nullable<number>;
 }
 
-export interface BrandResponse extends Board {
+export interface BoardResponse {
+  items: Board[];
 }
 
 export interface User {

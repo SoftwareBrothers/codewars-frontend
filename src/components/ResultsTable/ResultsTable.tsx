@@ -1,11 +1,11 @@
 import Error from 'next/error';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Board } from '../../modules/profile/utils/types';
+import { Board, BoardResponse } from '../../modules/profile/utils/types';
 import { CommonPageProps } from '../../utils/types';
 
 interface ResultsTableProps extends CommonPageProps {
-  initialData?: Board[];
+  initialData?: BoardResponse;
 }
 
 const ResultsTable: FC<ResultsTableProps> = ({
@@ -28,13 +28,13 @@ const ResultsTable: FC<ResultsTableProps> = ({
         </tr>
       </thead>
       <tbody className="text-white text-left">
-        {initialData.map((el: Board) => (
+        {initialData?.items.map((el: Board) => (
           <Link
-            href={"/users/1"}
+            href={`/users/${el.id}`}
           >
             <tr className="py-4 border-b-2 border-b-light-dark">
               <td className="py-4">{el.rank}</td>
-              <td className="py-4">{el.name}</td>
+              <td className="py-4">{el.name || el.username}</td>
               <td className="font-bold py-4">{el.score}</td>
             </tr>
           </Link>

@@ -11,7 +11,7 @@ import ResultsTable from '../src/components/ResultsTable';
 import { Tab, Tabs } from '../src/components/Tabs';
 import { apiPaths } from '../src/constants/apiPath';
 import boardFetcher from '../src/modules/profile/fetchers/boardFetcher';
-import { Board } from '../src/modules/profile/utils/types';
+import { BoardResponse } from '../src/modules/profile/utils/types';
 import fetchData from '../src/utils/fetchData';
 import fetchInitialData from '../src/utils/fetchInitialData';
 import { NAMESPACE } from '../src/utils/translationNamespaces';
@@ -24,7 +24,7 @@ const translations = [NAMESPACE.COMMON];
 const TABS = ["General", "JavaScript", "TypeScript"];
 
 interface DashboardProps extends CommonPageProps {
-  boardInitial?: Board[];
+  boardInitial?: BoardResponse;
 }
 
 const DashboardPage: NextPage<DashboardProps & {
@@ -143,7 +143,7 @@ export const getServerSideProps = fetchData(async (ctx) => {
 
   return {
     ...(await fetchInitialData(boardFetcher)(
-      apiPaths.board.getDetails.path,
+      apiPaths.board.getDetails.path("GENERAL"),
       'boardInitial',
       ctx,
     )),
