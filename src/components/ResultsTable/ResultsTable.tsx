@@ -5,12 +5,12 @@ import { Board, BoardResponse } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
 
 interface ResultsTableProps extends CommonPageProps {
-  initialData?: BoardResponse;
+  data?: Board[];
 }
 
 const ResultsTable: FC<ResultsTableProps> = ({
   errorResponse,
-  initialData
+  data
 }) => {
   if (errorResponse) {
     console.error(`[TL-ERROR] "${errorResponse.url}" ${errorResponse.message}`);
@@ -28,12 +28,12 @@ const ResultsTable: FC<ResultsTableProps> = ({
         </tr>
       </thead>
       <tbody className="text-white text-left">
-        {initialData?.items.map((el: Board) => (
+        {data?.map((el: Board) => (
           <Link
             href={`/users/${el.id}`}
           >
             <tr className="py-4 border-b-2 border-b-light-dark">
-              <td className="py-4">{el.rank}</td>
+              <td className="py-4">{el.rankName}</td>
               <td className="py-4">{el.name || el.username}</td>
               <td className="font-bold py-4">{el.score}</td>
             </tr>

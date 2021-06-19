@@ -14,8 +14,10 @@ export const apiPaths = {
   },
   board: {
     getDetails: {
-      path: (language:string): string => {
-        return `/board/?language=${language.toUpperCase()}`;
+      path: (language:string, dateFrom?:string, dateTo?:string): string => {
+        return `/board/?language=${language.toUpperCase()}` +
+          `${dateFrom && dateFrom !== undefined ? '&dateFrom=' + dateFrom : ''}` +
+          `${dateTo && dateTo !== undefined ? '&dateTo=' + dateTo : ''}`;
       }
     },
   }

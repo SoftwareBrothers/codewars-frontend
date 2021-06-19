@@ -5,7 +5,8 @@ export interface Board {
   id: number;
   name: string;
   username: string;
-  rank: Nullable<string>;
+  rankName: Nullable<string>;
+  rankColor: Nullable<string>;
   score: Nullable<number>;
 }
 

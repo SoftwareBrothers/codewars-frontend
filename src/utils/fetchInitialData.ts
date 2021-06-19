@@ -7,7 +7,7 @@ export const fetchInitialData = <TData>(
 ) => async (
   url: string,
   key: string,
-  context: GetServerSidePropsContext,
+  context?: GetServerSidePropsContext,
 ): Promise<Record<string, TData> | { errorResponse: ErrorResponse }> => {
   try {
     const initialData = await fetcher(url, context);

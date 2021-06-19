@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useEffect, useState } from 'react';  
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';  
 import AppLayout from '../src/components/AppLayout';
 import CardWrapper from '../src/components/CardWrapper';
 import Head from '../src/components/Head';
@@ -11,13 +11,14 @@ import ResultsTable from '../src/components/ResultsTable';
 import { Tab, Tabs } from '../src/components/Tabs';
 import { apiPaths } from '../src/constants/apiPath';
 import boardFetcher from '../src/modules/cw/fetchers/boardFetcher';
-import { Board, BoardResponse } from '../src/modules/cw/utils/types';
+import { BoardResponse } from '../src/modules/cw/utils/types';
 import fetchData from '../src/utils/fetchData';
 import fetchInitialData from '../src/utils/fetchInitialData';
 import { NAMESPACE } from '../src/utils/translationNamespaces';
 import { CommonPageProps } from '../src/utils/types';
 import DayPicker, { DateUtils, RangeModifier } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import ajax from '../src/utils/ajax';
 
 const translations = [NAMESPACE.COMMON];
 
@@ -28,10 +29,9 @@ interface DashboardProps extends CommonPageProps {
 }
 
 const DashboardPage: NextPage<DashboardProps & {
-  board: BoardResponse
 }> = ({
   errorResponse,
-  boardInitial,
+  boardInitial: data,
 }) => {
   const { t } = useTranslation(translations);
   const theme = useTheme();
@@ -41,7 +41,7 @@ const DashboardPage: NextPage<DashboardProps & {
   const [to, setTo] = useState(undefined);
   const [from, setFrom] = useState(undefined);
   const [datePickerOpened, setDatePickerOpened] = useState(false);
-
+  const [records, setRecords] = useState(data.items);
   useEffect(() => {
     if (!tab) {
       push({ pathname, query: { activeTab: "General" } }, undefined, {
@@ -75,15 +75,23 @@ const DashboardPage: NextPage<DashboardProps & {
   }
 
   const toggleDatePicker = () => {
-    if (datePickerOpened) {
-      getNewResults();
-    }
     setDatePickerOpened(!datePickerOpened);
   }
 
-  const getNewResults = () => {
-    // TO DO
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await ajax.get("https://mmeicqkxj2.execute-api.eu-west-2.amazonaws.com/main/" + apiPaths.board.getDetails.path(
+          tab.toString(), 
+          from !== undefined ? (from as Date).toISOString() : undefined, 
+          to !== undefined ? (to as Date).toISOString() : undefined
+        ));
+      data.items = res.data.items;
+      setRecords (data.items);
+    };
+    fetchData();
+  }, [tab, from, to]);
+  
+
   
   return (
     <PageWrapper errorResponse={errorResponse}>
@@ -132,7 +140,7 @@ const DashboardPage: NextPage<DashboardProps & {
               ))}
             </Tabs>
             <ResultsTable 
-              initialData={ boardInitial }/>
+              data={ records }/>
           </CardWrapper>
         </div>
       </AppLayout>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { Challenge } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
-import { format } from 'date-fns';
 
 interface ChallengesTableProps extends CommonPageProps {
   initialData?: Challenge[];
