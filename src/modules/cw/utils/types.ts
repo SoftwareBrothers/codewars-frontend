@@ -16,8 +16,10 @@ export interface BoardResponse {
 export interface User {
   id: number;
   username: string;
-  firstName: Nullable<string>;
-  lastName: Nullable<string>;
+  name: Nullable<string>;
+  honor: Nullable<number>;
+  clan: Nullable<string>;
+  leaderboardPosition: Nullable<number>;
   createdAt: Nullable<Date>;
   updatedAt: Nullable<Date>;
 }
@@ -25,9 +27,12 @@ export interface User {
 
 export interface Challenge {
   name: string;
-  rank: Nullable<string>;
-  finishedDate: Nullable<Date>;
-  language: Nullable<string>;
+  rankName: Nullable<string>;
+  rankColor: Nullable<string>;
+  description: Nullable<string>;
+  url: Nullable<string>;
+  completedDate: Nullable<Date>;
+  completedLanguages: Nullable<string[]>;
 }
 
 export interface Rank {

@@ -26,7 +26,7 @@ const UserCard: FC<UserProps> = ({
         <div className="w-full md:h-full md:w-3/4">
           <div className="border-b-2 border-cw-red pb-6">
             <h2 className="tf-h2 text-white">
-              Paweł Lorenc  
+              {initialData.name || initialData.username} 
               <span className="ml-4">
               3 kyu
               </span>
@@ -39,7 +39,7 @@ const UserCard: FC<UserProps> = ({
           <div className="flex mt-6">
             <div className="block w-1/2">
               <h3 className="tf-h3 text-white">
-                544
+                {initialData.honor}
               </h3>
               <p className="text-cw-gray text-xs">
                 Honor
@@ -47,7 +47,7 @@ const UserCard: FC<UserProps> = ({
             </div>
             <div className="block w-1/2">
               <h3 className="tf-h3 text-white">
-                133
+                {initialData.leaderboardPosition}
               </h3>
               <p className="text-cw-gray text-xs">
                 Leaderboard position

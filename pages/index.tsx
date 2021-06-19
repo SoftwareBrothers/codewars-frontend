@@ -10,8 +10,8 @@ import PageWrapper from '../src/components/PageWrapper';
 import ResultsTable from '../src/components/ResultsTable';
 import { Tab, Tabs } from '../src/components/Tabs';
 import { apiPaths } from '../src/constants/apiPath';
-import boardFetcher from '../src/modules/profile/fetchers/boardFetcher';
-import { Board, BoardResponse } from '../src/modules/profile/utils/types';
+import boardFetcher from '../src/modules/cw/fetchers/boardFetcher';
+import { Board, BoardResponse } from '../src/modules/cw/utils/types';
 import fetchData from '../src/utils/fetchData';
 import fetchInitialData from '../src/utils/fetchInitialData';
 import { NAMESPACE } from '../src/utils/translationNamespaces';
@@ -25,17 +25,13 @@ const TABS = ["General", "JavaScript", "TypeScript"];
 
 interface DashboardProps extends CommonPageProps {
   boardInitial?: BoardResponse;
-  jsInitial?: BoardResponse;
-  tsInitial?: BoardResponse;
 }
 
 const DashboardPage: NextPage<DashboardProps & {
   board: BoardResponse
 }> = ({
   errorResponse,
-  board: boardInitial,
-  jsInitial,
-  tsInitial
+  boardInitial,
 }) => {
   const { t } = useTranslation(translations);
   const theme = useTheme();
@@ -136,7 +132,7 @@ const DashboardPage: NextPage<DashboardProps & {
               ))}
             </Tabs>
             <ResultsTable 
-              initialData={ tab === "JavaScript" ? jsInitial : boardInitial}/>
+              initialData={ boardInitial }/>
           </CardWrapper>
         </div>
       </AppLayout>
@@ -150,20 +146,10 @@ export const getServerSideProps = fetchData(async (ctx) => {
 
   return {
     ...(await fetchInitialData(boardFetcher)(
-      apiPaths.board.getDetails.path("GENERAL"),
-      'generalInitial',
+      apiPaths.board.getDetails.path("general"),
+      'boardInitial',
       ctx,
-    )),
-    ...(await fetchInitialData(boardFetcher)(
-      apiPaths.board.getDetails.path("javascript"),
-      'jsInitial',
-      ctx,
-    )),
-    ...(await fetchInitialData(boardFetcher)(
-      apiPaths.board.getDetails.path("typescript"),
-      'tsInitial',
-      ctx,
-    )),
+    ))
   };
 });
 

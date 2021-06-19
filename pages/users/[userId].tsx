@@ -9,9 +9,9 @@ import Head from '../../src/components/Head';
 import PageWrapper from '../../src/components/PageWrapper';
 import RanksTable from '../../src/components/RanksTable';
 import { apiPaths } from '../../src/constants/apiPath';
-import UserCard from '../../src/modules/profile/components/User';
-import userFetcher from '../../src/modules/profile/fetchers/userFetcher';
-import { Challenge, User, UserRank } from '../../src/modules/profile/utils/types';
+import UserCard from '../../src/modules/cw/components/User';
+import userFetcher from '../../src/modules/cw/fetchers/userFetcher';
+import { Challenge, User, UserRank } from '../../src/modules/cw/utils/types';
 import fetchData from '../../src/utils/fetchData';
 import fetchInitialData from '../../src/utils/fetchInitialData';
 import { NAMESPACE } from '../../src/utils/translationNamespaces';
@@ -32,12 +32,7 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
 > = ({
   errorResponse,
   userInitial,
-  challengesInitial = [{
-    name: "test",
-    rank: "123",
-    language: "javascript",
-    finishedDate: new Date(),
-  }],
+  challengesInitial,
   ranksInitial= [{
     name: "test",
     score: 123,
@@ -98,6 +93,11 @@ export const getServerSideProps = fetchData(async (ctx) => {
     ...(await fetchInitialData(userFetcher)(
       apiPaths.user.getDetails.path(userId),
       'userInitial',
+      ctx,
+    )),
+    ...(await fetchInitialData(userFetcher)(
+      apiPaths.user.getChallenges.path(userId),
+      'challengesInitial',
       ctx,
     ))
   };

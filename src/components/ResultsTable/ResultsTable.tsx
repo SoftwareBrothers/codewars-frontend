@@ -1,7 +1,7 @@
 import Error from 'next/error';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Board, BoardResponse } from '../../modules/profile/utils/types';
+import { Board, BoardResponse } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
 
 interface ResultsTableProps extends CommonPageProps {

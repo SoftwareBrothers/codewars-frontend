@@ -6,6 +6,11 @@ export const apiPaths = {
         return `/users/${userId}`;
       },
     },
+    getChallenges: {
+      path: (userId:number): string => {
+        return `/users/${userId}/challenges`;
+      },
+    },
   },
   board: {
     getDetails: {

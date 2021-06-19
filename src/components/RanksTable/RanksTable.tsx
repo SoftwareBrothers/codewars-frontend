@@ -1,6 +1,6 @@
 import Error from 'next/error';
 import { FC } from 'react';
-import { UserRank } from '../../modules/profile/utils/types';
+import { UserRank } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
 
 interface RanksTableProps extends CommonPageProps {
