@@ -1,0 +1,117 @@
+name: CI/CD
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - production
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: eu-west-2
+  API_URL_STAGING: ${{ secrets.API_URL_STAGING }}
+  API_URL_PRODUCTION: ${{ secrets.API_URL_PRODUCTION }}
+  
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        id: node-modules-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
+      - name: Install project dependencies
+#        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Run lint
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Run build
+        run: yarn build
+
+  deploy:
+    needs: lint-and-test
+    if: |
+        endsWith(github.ref, 'main') ||
+        endsWith(github.ref, 'production') ||
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13.7.0'
+
+      - name: Install project dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Set envs to staging
+        if: endsWith(github.ref, 'main')
+        run: |
+          echo "API_URL="${{ secrets.API_URL_STAGING }} >> $GITHUB_ENV
+
+      - name: Set envs to production
+        if: endsWith(github.ref, 'production')
+        run: |
+          echo "API_URL="${{ secrets.API_PRODUCTION }} >> $GITHUB_ENV
+
+      - name: Download `.serverless` state from S3 (main)
+        if: github.ref == 'refs/heads/main'
+        run: |
+            aws s3 sync s3://codewars-frontend-staging/.serverless .serverless --delete
+
+      - name: Download `.serverless` state from S3 (production)
+        if: github.ref == 'refs/heads/production'
+        run: |
+            aws s3 sync s3://codewars-frontend-production/.serverless .serverless --delete
+    
+      - name: Copy platform staging
+        uses: canastro/copy-file-action@master
+        if: github.ref == 'refs/heads/main'
+        with:
+          source: serverless-staging.yml
+          target: serverless.yml
+
+      - name: Copy platform production
+        uses: canastro/copy-file-action@master
+        if: github.ref == 'refs/heads/production'
+        with:
+          source: serverless-production.yml
+          target: serverless.yml
+
+      - name: Replace ENV vars
+        uses: falnyr/replace-env-vars-action@master
+        env:
+          API_URL: ${{ env.API_URL }}
+        with:
+          filename: serverless.yml
+
+      - name: Deploy
+        if: |
+          endsWith(github.ref, 'main') ||
+          endsWith(github.ref, 'production')
+        run: yarn deploy
+
+      - name: Upload `.serverless` state to S3 (main)
+        if: github.ref == 'refs/heads/main'
+        run: |
+             aws s3 sync .serverless s3://codewars-frontend-staging/.serverless --delete
+
+      - name: Upload `.serverless` state to S3 (production)
+        if: github.ref == 'refs/heads/production'
+        run: |
+             aws s3 sync .serverless s3://codewars-frontend-production/.serverless --delete

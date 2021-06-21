@@ -1,0 +1,17 @@
+myNextApp:
+  component: "@sls-next/serverless-component@1.19.0"
+  stage: frontend
+  inputs:
+    timeout: 30
+    # distributionId: 
+    bucketName: codewars-frontend-production
+    bucketRegion: eu-west-2
+    name:
+      defaultLambda: codewars-frontend-production-default
+      apiLambda: codewars-frontend-production-api
+      imageLambda: codewars-frontend-production-image
+    build:
+      cmd: yarn
+      env:
+        API_URL: __API_URL__
+    domain: ['codewars', 'softwarebrothers.co']
