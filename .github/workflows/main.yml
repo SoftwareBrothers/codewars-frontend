@@ -44,7 +44,7 @@ jobs:
     needs: lint-and-test
     if: |
         endsWith(github.ref, 'main') ||
-        endsWith(github.ref, 'production') ||
+        endsWith(github.ref, 'production')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
