@@ -31,7 +31,7 @@ const RanksTable: FC<RanksTableProps> = ({
         </thead>
         <tbody className="text-white text-left">
           {initialData.map((el: UserRank, index: number) => (
-            <tr className={`py-4 ${index < initialData.length - 1 ? 'border-b-2 border-b-light-dark' : ''}`}>
+            <tr className={`py-4 ${index < initialData.length - 1 ? 'border-b-2 border-b-light-dark' : ''}`} key={index}>
               <td className="py-4"><img src={`/images/${el.language.toString().toLowerCase()}.svg`} alt="icon" className="h-6 px-3"/></td>
               <td className="py-4">{el.language}</td>
               <td className="py-4">{el.name}</td>

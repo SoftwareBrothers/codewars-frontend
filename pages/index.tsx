@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';  
+import React, { ChangeEvent, useEffect, useState } from 'react';  
 import AppLayout from '../src/components/AppLayout';
 import CardWrapper from '../src/components/CardWrapper';
 import Head from '../src/components/Head';
@@ -89,7 +89,7 @@ const DashboardPage: NextPage<DashboardProps & {
       setRecords (data.items);
     };
     fetchData();
-  }, [tab, from, to]);
+  }, [tab, from, to, data]);
   
 
   
@@ -150,8 +150,6 @@ const DashboardPage: NextPage<DashboardProps & {
 
 
 export const getServerSideProps = fetchData(async (ctx) => {
-  const { query } = ctx;
-
   return {
     ...(await fetchInitialData(boardFetcher)(
       apiPaths.board.getDetails.path("general"),

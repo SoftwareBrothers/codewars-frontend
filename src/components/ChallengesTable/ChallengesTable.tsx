@@ -1,5 +1,4 @@
 import Error from 'next/error';
-import Link from 'next/link';
 import { FC } from 'react';
 import { Challenge } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
@@ -32,12 +31,12 @@ const ChallengesTable: FC<ChallengesTableProps> = ({
         </thead>
         <tbody className="text-white text-left">
           {initialData.map((el: Challenge) => (
-            <tr className="py-4 border-b-2 border-b-light-dark">
+            <tr className="py-4 border-b-2 border-b-light-dark" key={el.name}>
               <td className={`py-4 text-${el.rankColor} border-${el.rankColor}`}>{el.rankName}</td>
               <td className="py-4">{el.name}</td>
               <td className="py-4">
                 {el.completedLanguages && el.completedLanguages.map((lan:string) => (
-                    <img src={`/images/${lan.toString().toLowerCase()}.svg`} alt="icon" className="h-6"/>
+                    <img src={`/images/${lan.toString().toLowerCase()}.svg`} alt="icon" key={lan} className="h-6"/>
                 ))}
               </td>
               <td className="py-4">{el.completedDate.toString().substr(0,10)}</td>

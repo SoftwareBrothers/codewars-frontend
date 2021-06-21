@@ -46,7 +46,7 @@ export const useApiCall = <TObject, TResponse = never>(
     success: false,
   });
 
-  const { method, authorize } = {
+  const { method } = {
     ...defaultUseApiCallConfig,
     ...apiCallConfig,
   };
