@@ -19,6 +19,7 @@ import { CommonPageProps } from '../src/utils/types';
 import DayPicker, { DateUtils, RangeModifier } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import ajax from '../src/utils/ajax';
+import getCommonAsyncProps from '../src/utils/getCommonAsyncProps';
 
 const translations = [NAMESPACE.COMMON];
 
@@ -150,9 +151,8 @@ const DashboardPage: NextPage<DashboardProps & {
 
 
 export const getServerSideProps = fetchData(async (ctx) => {
-  const { query } = ctx;
-
   return {
+    ...(await getCommonAsyncProps(ctx, translations)),
     ...(await fetchInitialData(boardFetcher)(
       apiPaths.board.getDetails.path("general"),
       'boardInitial',

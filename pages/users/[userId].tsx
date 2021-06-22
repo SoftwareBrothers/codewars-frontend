@@ -14,6 +14,7 @@ import userFetcher from '../../src/modules/cw/fetchers/userFetcher';
 import { Challenge, User, UserRank } from '../../src/modules/cw/utils/types';
 import fetchData from '../../src/utils/fetchData';
 import fetchInitialData from '../../src/utils/fetchInitialData';
+import getCommonAsyncProps from '../../src/utils/getCommonAsyncProps';
 import { NAMESPACE } from '../../src/utils/translationNamespaces';
 import {
   CommonPageProps,
@@ -90,6 +91,7 @@ export const getServerSideProps = fetchData(async (ctx) => {
   const { query } = ctx;
   const userId = parseInt(query.userId as string, 10);
   return {
+    ...(await getCommonAsyncProps(ctx, translations)),
     ...(await fetchInitialData(userFetcher)(
       apiPaths.user.getDetails.path(userId),
       'userInitial',
