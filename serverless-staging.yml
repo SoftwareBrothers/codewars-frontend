@@ -13,5 +13,5 @@ myNextApp:
     build:
       cmd: yarn
       env:
-        API_URL: __API_URL__,
+        API_URL: __API_URL__
     domain: ['codewars-staging', 'softwarebrothers.co']
