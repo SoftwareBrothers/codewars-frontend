@@ -1,7 +1,7 @@
 import Error from 'next/error';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Board, BoardResponse } from '../../modules/cw/utils/types';
+import { Board } from '../../modules/cw/utils/types';
 import { CommonPageProps } from '../../utils/types';
 
 interface ResultsTableProps extends CommonPageProps {
@@ -31,6 +31,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
         {data?.map((el: Board) => (
           <Link
             href={`/users/${el.id}`}
+            key={el.id}
           >
             <tr className="py-4 border-b-2 border-b-light-dark">
               <td className="py-4">{el.rankName}</td>
