@@ -5,9 +5,6 @@ const basePath = '';
 const options = {
   inlineImageLimit: 0,
   i18n,
-  serverRuntimeConfig: {
-    SERVER_API_URL: process.env.SERVER_API_URL,
-  },
   env: {
     API_URL: process.env.API_URL,
   },
