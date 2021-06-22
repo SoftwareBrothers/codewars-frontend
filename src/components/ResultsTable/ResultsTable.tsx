@@ -34,7 +34,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
             key={el.id}
           >
             <tr className="py-4 border-b-2 border-b-light-dark">
-              <td className="py-4">{el.rankName}</td>
+              <td className="py-4" style={{color: el.rankColor}}>{el.rankName}</td>
               <td className="py-4">{el.name || el.username}</td>
               <td className="font-bold py-4">{el.score}</td>
             </tr>

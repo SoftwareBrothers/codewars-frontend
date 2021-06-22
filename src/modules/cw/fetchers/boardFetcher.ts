@@ -5,12 +5,12 @@ import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
 import { BoardResponse } from '../utils/types';
 
 const boardFetcher = async (
-  url: string,
+  url?: string,
   context?: GetServerSidePropsContext,
 ): Promise<BoardResponse> => {
   const { data } = await ajax.get<never, AxiosResponse<BoardResponse>>(
     url,
-    getAPICallAuthConfig(context),
+    await getAPICallAuthConfig(context),
   );
 
   return data;

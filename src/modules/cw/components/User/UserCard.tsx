@@ -16,7 +16,6 @@ const UserCard: FC<UserProps> = ({
 
     return <Error statusCode={errorResponse.code} />;
   }
-
   if (!initialData) {
     return null;
   }

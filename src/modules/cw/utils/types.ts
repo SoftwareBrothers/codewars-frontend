@@ -21,8 +21,8 @@ export interface User {
   honor: Nullable<number>;
   clan: Nullable<string>;
   leaderboardPosition: Nullable<number>;
-  createdAt: Nullable<Date>;
-  updatedAt: Nullable<Date>;
+  createdAt: Nullable<string>;
+  updatedAt: Nullable<string>;
 }
 
 
@@ -32,7 +32,7 @@ export interface Challenge {
   rankColor: Nullable<string>;
   description: Nullable<string>;
   url: Nullable<string>;
-  completedDate: Nullable<Date>;
+  completedDate: Nullable<string>;
   completedLanguages: Nullable<string[]>;
 }
 

@@ -11,7 +11,7 @@ const challengesFetcher = async (
 ): Promise<Challenge[]> => {
   const { data } = await ajax.get<never, AxiosResponse<Challenge[]>>(
     url,
-    getAPICallAuthConfig(context),
+    await getAPICallAuthConfig(context),
   );
 
   return data.map((challenge:Challenge) => 

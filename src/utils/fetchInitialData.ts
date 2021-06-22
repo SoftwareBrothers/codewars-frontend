@@ -10,7 +10,7 @@ export const fetchInitialData = <TData>(
   context?: GetServerSidePropsContext,
 ): Promise<Record<string, TData> | { errorResponse: ErrorResponse }> => {
   try {
-    const initialData = await fetcher(url, context);
+    const initialData = await fetcher(process.env.API_URL + url, context);
 
     return { [key]: initialData };
   } catch (error) {
