@@ -3,6 +3,6 @@
         "pageTitle": "Software Brothers League"
     },
     "profile": {
-        "pageTitle": "Profile {{ user }}"
+        "pageTitle": "User {{ user }}"
     }
 }

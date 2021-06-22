@@ -42,7 +42,7 @@ const DashboardPage: NextPage<DashboardProps & {
   const [to, setTo] = useState(undefined);
   const [from, setFrom] = useState(undefined);
   const [datePickerOpened, setDatePickerOpened] = useState(false);
-  const [records, setRecords] = useState(data.items);
+  const [records, setRecords] = useState([]);
   useEffect(() => {
     if (!tab) {
       push({ pathname, query: { activeTab: "General" } }, undefined, {
@@ -81,13 +81,12 @@ const DashboardPage: NextPage<DashboardProps & {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await ajax.get("https://mmeicqkxj2.execute-api.eu-west-2.amazonaws.com/main/" + apiPaths.board.getDetails.path(
-          tab.toString(), 
-          from !== undefined ? (from as Date).toISOString() : undefined, 
-          to !== undefined ? (to as Date).toISOString() : undefined
+      const res = await ajax.get(apiPaths.board.getDetails.path(
+          tab ? tab.toString() : "General", 
+          from !== undefined ? (from as Date).toISOString().substr(0,10) : undefined, 
+          to !== undefined ? (to as Date).toISOString().substr(0,10) : undefined
         ));
-      data.items = res.data.items;
-      setRecords (data.items);
+      setRecords (res.data.items);
     };
     fetchData();
   }, [tab, from, to, data]);
@@ -152,12 +151,7 @@ const DashboardPage: NextPage<DashboardProps & {
 
 export const getServerSideProps = fetchData(async (ctx) => {
   return {
-    ...(await getCommonAsyncProps(ctx, translations)),
-    ...(await fetchInitialData(boardFetcher)(
-      apiPaths.board.getDetails.path("general"),
-      'boardInitial',
-      ctx,
-    ))
+    ...(await getCommonAsyncProps(ctx, translations))
   };
 });
 

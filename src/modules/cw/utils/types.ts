@@ -37,10 +37,14 @@ export interface Challenge {
 }
 
 export interface Rank {
-  name: Nullable<string>;
+  rankName: Nullable<string>;
   language: Nullable<string>;
+  rank: Nullable<number>;
+  rankColor: Nullable<string>;
 }
 
 export interface UserRank extends Rank {
   score: Nullable<number>;
+  userId: Nullable<number>;
+  date: Nullable<string>;
 }

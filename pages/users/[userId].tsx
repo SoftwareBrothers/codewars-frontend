@@ -10,6 +10,8 @@ import PageWrapper from '../../src/components/PageWrapper';
 import RanksTable from '../../src/components/RanksTable';
 import { apiPaths } from '../../src/constants/apiPath';
 import UserCard from '../../src/modules/cw/components/User';
+import challengesFetcher from '../../src/modules/cw/fetchers/challengesFetcher';
+import statsFetcher from '../../src/modules/cw/fetchers/statsFetcher';
 import userFetcher from '../../src/modules/cw/fetchers/userFetcher';
 import { Challenge, User, UserRank } from '../../src/modules/cw/utils/types';
 import fetchData from '../../src/utils/fetchData';
@@ -34,19 +36,7 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
   errorResponse,
   userInitial,
   challengesInitial,
-  ranksInitial= [{
-    name: "test",
-    score: 123,
-    language: "javascript"
-  },{
-    name: "test 2",
-    score: 33,
-    language: "typescript"
-  },{
-    name: "test 3",
-    score: -500,
-    language: "javascript"
-  }],
+  ranksInitial
 }) => {
   const { t } = useTranslation(translations);
 
@@ -56,7 +46,7 @@ const UserOverviewPage: NextPage<UserOverviewProps & {
       errorResponse={errorResponse}
     >
       <Head
-        title={t(`${NAMESPACE.PROFILE}.pageTitle`, {user: userInitial.username})}
+        title={t("profile.pageTitle", {user: userInitial? userInitial.username : ""})}
       />
       <AppLayout
         >
@@ -97,7 +87,12 @@ export const getServerSideProps = fetchData(async (ctx) => {
       'userInitial',
       ctx,
     )),
-    ...(await fetchInitialData(userFetcher)(
+    ...(await fetchInitialData(statsFetcher)(
+      apiPaths.user.getStats.path(userId),
+      'ranksInitial',
+      ctx,
+    )),
+    ...(await fetchInitialData(challengesFetcher)(
       apiPaths.user.getChallenges.path(userId),
       'challengesInitial',
       ctx,

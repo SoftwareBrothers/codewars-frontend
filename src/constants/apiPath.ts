@@ -6,6 +6,11 @@ export const apiPaths = {
         return `/users/${userId}`;
       },
     },
+    getStats: {
+      path: (userId:number): string => {
+        return `/users/${userId}/statistics/current`;
+      },
+    },
     getChallenges: {
       path: (userId:number): string => {
         return `/users/${userId}/challenges`;
