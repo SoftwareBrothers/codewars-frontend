@@ -69,15 +69,15 @@ jobs:
         run: |
           echo "API_URL="${{ secrets.API_PRODUCTION }} >> $GITHUB_ENV
 
-      - name: Download `.serverless` state from S3 (main)
-        if: github.ref == 'refs/heads/main'
-        run: |
-            aws s3 sync s3://codewars-frontend-staging/.serverless .serverless --delete
+      # - name: Download `.serverless` state from S3 (main)
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #       aws s3 sync s3://codewars-frontend-staging/.serverless .serverless --delete
 
-      - name: Download `.serverless` state from S3 (production)
-        if: github.ref == 'refs/heads/production'
-        run: |
-            aws s3 sync s3://codewars-frontend-production/.serverless .serverless --delete
+      # - name: Download `.serverless` state from S3 (production)
+      #   if: github.ref == 'refs/heads/production'
+      #   run: |
+      #       aws s3 sync s3://codewars-frontend-production/.serverless .serverless --delete
     
       - name: Copy platform staging
         uses: canastro/copy-file-action@master
