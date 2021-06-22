@@ -13,5 +13,5 @@ myNextApp:
     build:
       cmd: yarn
       env:
-        API_URL: __API_URL__
+        API_URL: https://h2n1hp4p4a.execute-api.eu-west-2.amazonaws.com/production
     domain: ['codewars', 'softwarebrothers.co']
