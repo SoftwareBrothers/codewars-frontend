@@ -2,7 +2,6 @@ import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import ajax from '../../../utils/ajax';
 import getAPICallAuthConfig from '../../../utils/getAPICallAuthConfig';
-import challengeSerializer from '../serializers/challangeSerializer';
 import { Rank } from '../utils/types';
 
 const statsFetcher = async (
