@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // post-build.js
 const fs = require("fs-extra");
 console.log("-> Copying locales directory...");
