@@ -6,12 +6,14 @@ myNextApp:
     # distributionId: 
     bucketName: codewars-frontend-staging
     bucketRegion: eu-west-2
+    useServerlessTraceTarget: true
     name:
       defaultLambda: codewars-frontend-staging-default
       apiLambda: codewars-frontend-staging-api
       imageLambda: codewars-frontend-staging-image
     build:
       cmd: yarn
+      postBuildCommands: ["node serverless-post-build.js"]
       env:
         API_URL: https://mmeicqkxj2.execute-api.eu-west-2.amazonaws.com/main
     domain: ['codewars-staging', 'softwarebrothers.co']
