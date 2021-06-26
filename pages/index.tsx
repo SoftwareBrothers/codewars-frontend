@@ -62,8 +62,8 @@ const DashboardPage: NextPage<DashboardProps & {
       from,
       to
     } as RangeModifier);
-    setFrom(range.from);
-    setTo(range.to);
+    setFrom(DateUtils.isFutureDay(range.from) ? new Date() : range.from);
+    setTo(DateUtils.isFutureDay(range.to)  ? new Date() : range.to);
     
   }
 
@@ -119,6 +119,9 @@ const DashboardPage: NextPage<DashboardProps & {
                 selectedDays={[from, { from, to }]}
                 modifiers={modifiers}
                 onDayClick={handleDayClick}
+                disabledDays={{ 
+                  after: new Date()
+                }} 
               />
               <div className="flex justify-end">
                 <button onClick={handleResetClick} className="text-cw-red uppercase min-w-1/4 p-2 mx-2">
