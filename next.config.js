@@ -4,12 +4,15 @@ const basePath = '';
 
 const options = {
   inlineImageLimit: 0,
-  i18n,
   env: {
     API_URL: process.env.API_URL,
   },
   productionBrowserSourceMaps: true,
   target: 'serverless',
+  i18n,
+  future: {
+    webpack5: true,
+  },
   webpack: (config, options) => {
     config.plugins.push(
       new options.webpack.DefinePlugin({
@@ -18,6 +21,7 @@ const options = {
         ),
       }),
     );
+    config.experiments = {};
     return config;
   },
   basePath,
