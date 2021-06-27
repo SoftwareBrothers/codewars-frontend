@@ -35,7 +35,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
           >
             <tr className="py-4 border-b-2 border-b-light-dark cursor-pointer">
               <td className="py-4" style={{color: el.rankColor}}>{el.rankName}</td>
-              <td className="py-4">{el.name || el.username}</td>
+              <td className="py-4">{el.username} {el.name ? `(${el.name})` : ''}</td>
               <td className="font-bold py-4">{el.score}</td>
             </tr>
           </Link>
