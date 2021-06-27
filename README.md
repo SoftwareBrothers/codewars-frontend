@@ -27,4 +27,3 @@ Make sure your `.env` file has all required environment variables.
 | ------------ | ------------------------------------- | ----------------------- |
 | `API_URL`    | URL where this server can be accessed | `http://localhost:3000` |
 
-|
