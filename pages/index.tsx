@@ -77,16 +77,17 @@ const DashboardPage: NextPage<DashboardProps & {
     setDatePickerOpened(!datePickerOpened);
   }
 
+  const fetchRecords = async () => {
+    const res = await ajax.get(apiPaths.board.getDetails.path(
+        tab ? tab.toString() : "General", 
+        from !== undefined ? (from as Date).toISOString().substr(0,10) : undefined, 
+        to !== undefined ? (to as Date).toISOString().substr(0,10) : undefined
+      ));
+    setRecords (res.data.items);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await ajax.get(apiPaths.board.getDetails.path(
-          tab ? tab.toString() : "General", 
-          from !== undefined ? (from as Date).toISOString().substr(0,10) : undefined, 
-          to !== undefined ? (to as Date).toISOString().substr(0,10) : undefined
-        ));
-      setRecords (res.data.items);
-    };
-    fetchData();
+    fetchRecords();
   }, [tab, from, to, data]);
   
 

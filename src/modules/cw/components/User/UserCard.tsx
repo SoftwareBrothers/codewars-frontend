@@ -1,5 +1,6 @@
 import Error from 'next/error';
 import { FC } from 'react';
+import Link from 'next/link';
 import { CommonPageProps } from '../../../../utils/types';
 import { User } from '../../utils/types';
 
@@ -30,10 +31,15 @@ const UserCard: FC<UserProps> = ({
               3 kyu
               </span>
             </h2>
-            <div className="flex my-3 w-2/3 bg-dark-orange bg-opacity-10 p-2 rounded">
-              <img src="/images/logo-cw-red.jpg" alt="icon" className="h-6 pr-2" />
-              <span className="text-dark-orange ml-2 text-s">Codewars profile</span>
-            </div>
+            <Link
+                href={`https://www.codewars.com/users/` + initialData.username}
+                >
+              <div className="flex my-3 w-2/3 bg-dark-orange bg-opacity-10 p-2 rounded cursor-pointer">
+                <img src="/images/logo-cw-red.jpg" alt="icon" className="h-6 pr-2" />
+                <span className="text-dark-orange ml-2 text-s">Codewars profile</span>
+              </div>
+            </Link>
+           
           </div>
           <div className="flex mt-6">
             <div className="block w-1/2">
