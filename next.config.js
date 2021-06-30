@@ -10,9 +10,7 @@ const options = {
   productionBrowserSourceMaps: true,
   target: 'serverless',
   i18n,
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
   webpack: (config, options) => {
     config.plugins.push(
       new options.webpack.DefinePlugin({

@@ -233,3 +233,64 @@
     color: white !important
   }
 }
+
+.small-hex {
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  height: 26px;
+  line-height: 28px;
+  margin-left: 8px;
+  margin-right: 8px;
+  position: relative;
+  text-align: center;
+  text-shadow: none;
+  width: 15px;
+  z-index: 1;
+}
+
+.small-hex::after, .small-hex::before {
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  position: absolute;
+  width: 0;
+  z-index: 0;
+}
+
+.small-hex::before {
+  border-right: 8px solid white;
+  content: " ";
+  height: 0;
+  left: -8px;
+}
+
+.small-hex::after {
+  border-left: 8px solid white;
+  content: "";
+  right: -8px;
+  top: 0;
+}
+
+.inner-small-hex::after, .inner-small-hex::before {
+  border-bottom: 11px solid transparent;
+  border-top: 11px solid transparent;
+  position: absolute;
+  width: 0;
+  z-index: 0;
+}
+
+.inner-small-hex::before {
+  border-right: 6px solid white;
+  content: " ";
+  height: 0;
+  left: -6px;
+}
+
+.inner-small-hex::after {
+  border-left: 6px solid white;
+  content: "";
+  right: -6px;
+  top: 0;
+  z-index: 2;
+}

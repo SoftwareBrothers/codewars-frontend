@@ -28,7 +28,7 @@ const UserCard: FC<UserProps> = ({
             <h2 className="tf-h2 text-white">
               {initialData.name || initialData.username} 
               <span className="ml-4">
-              3 kyu
+                3 kyu
               </span>
             </h2>
             <Link
